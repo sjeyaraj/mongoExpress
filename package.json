@@ -1,0 +1,26 @@
+{
+  "name": "mongoexpress",
+  "version": "1.0.0",
+  "description": "An Express application using MongoDB as backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjeyaraj/mongoExpress.git"
+  },
+  "author": "Stephen Jeyaraj Joseph",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjeyaraj/mongoExpress/issues"
+  },
+  "homepage": "https://github.com/sjeyaraj/mongoExpress#readme",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "consolidate": "^0.15.1",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "nunjucks": "^3.1.3"
+  }
+}
