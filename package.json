@@ -1,26 +1,15 @@
 {
-  "name": "mongoexpress",
-  "version": "1.0.0",
-  "description": "An Express application using MongoDB as backend.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sjeyaraj/mongoExpress.git"
-  },
-  "author": "Stephen Jeyaraj Joseph",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sjeyaraj/mongoExpress/issues"
-  },
-  "homepage": "https://github.com/sjeyaraj/mongoExpress#readme",
-  "dependencies": {
-    "assert": "^1.4.1",
-    "consolidate": "^0.15.1",
-    "express": "^4.16.4",
-    "mongodb": "^3.1.8",
-    "nunjucks": "^3.1.3"
-  }
+    "name": "get_express",
+    "version": "0.1.0",
+    "description": "Get parameters in express",
+    "main": "app.js",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "consolidate": "~0.13.1",
+        "express": "^4.16.4",
+        "mongodb": "~2.1.3",
+        "nunjucks": "^3.1.3"
+    },
+    "author": "Shannon Bradshaw",
+    "license": "0BSD"
 }
