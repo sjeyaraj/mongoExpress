@@ -19,7 +19,8 @@ MongoClient.connect(
       founded_year: 1,
       number_of_employees: 1,
       crunchbase_url: 1,
-      "ipo.valuation_amount": 1
+      "ipo.valuation_amount": 1,
+      "offices.country_code": 1
     };
     const cursor = db.collection("companies").find(query, projection);
     let numMatches = 0;
@@ -60,6 +61,9 @@ function queryDocument(options) {
       query["ipo.valuation_amount"] = { $eq: null };
     }
   }
+  if ("country" in options) {
+    query["offices.country_code"] = options.country;
+  }
   return query;
 }
 
@@ -68,7 +72,8 @@ function commandLineOptions() {
     { name: "fromYear", alias: "f", type: Number },
     { name: "toYear", alias: "t", type: Number },
     { name: "empCount", alias: "c", type: Number },
-    { name: "ipo", alias: "i", type: String }
+    { name: "ipo", alias: "i", type: String },
+    { name: "country", alias: "u", type: String }
   ]);
 
   if (!("fromYear" in options && "toYear" in options)) {
