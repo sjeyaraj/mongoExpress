@@ -14,11 +14,12 @@ MongoClient.connect(
     const query = queryDocument(options);
     console.log(query);
     const projection = {
-      _id: 1,
+      _id: 0,
       name: 1,
       founded_year: 1,
       number_of_employees: 1,
-      crunchbase_url: 1
+      crunchbase_url: 1,
+      "ipo.valuation_amount": 1
     };
     const cursor = db.collection("companies").find(query, projection);
     let numMatches = 0;
@@ -51,6 +52,14 @@ function queryDocument(options) {
   if ("empCount" in options) {
     query.number_of_employees = { $gte: options.empCount };
   }
+
+  if ("ipo" in options) {
+    if (options.ipo == "yes") {
+      query["ipo.valuation_amount"] = { $exists: true, $ne: null };
+    } else if (options.ipo == "no") {
+      query["ipo.valuation_amount"] = { $eq: null };
+    }
+  }
   return query;
 }
 
@@ -58,7 +67,8 @@ function commandLineOptions() {
   var options = commandLineArgs([
     { name: "fromYear", alias: "f", type: Number },
     { name: "toYear", alias: "t", type: Number },
-    { name: "empCount", alias: "c", type: Number }
+    { name: "empCount", alias: "c", type: Number },
+    { name: "ipo", alias: "i", type: String }
   ]);
 
   if (!("fromYear" in options && "toYear" in options)) {
