@@ -23,8 +23,9 @@ MongoClient.connect(
       "offices.country_code": 1
     };
     const cursor = db.collection("companies").find(query, projection);
+    // cursor.sort({ founded_year: -1 });
+    cursor.sort([["founded_year", 1], ["number_of_employees", -1]]);
     let numMatches = 0;
-
     cursor.forEach(
       doc => {
         numMatches += 1;
