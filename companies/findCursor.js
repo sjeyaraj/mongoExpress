@@ -17,14 +17,13 @@ MongoClient.connect(
       _id: 0,
       name: 1,
       founded_year: 1,
-      number_of_employees: 1,
-      crunchbase_url: 1,
-      "ipo.valuation_amount": 1,
-      "offices.country_code": 1
+      number_of_employees: 1
     };
     const cursor = db.collection("companies").find(query, projection);
     // cursor.sort({ founded_year: -1 });
     cursor.sort([["founded_year", 1], ["number_of_employees", -1]]);
+    cursor.skip(options.skip);
+    cursor.limit(options.limit);
     let numMatches = 0;
     cursor.forEach(
       doc => {
@@ -74,7 +73,9 @@ function commandLineOptions() {
     { name: "toYear", alias: "t", type: Number },
     { name: "empCount", alias: "c", type: Number },
     { name: "ipo", alias: "i", type: String },
-    { name: "country", alias: "u", type: String }
+    { name: "country", alias: "u", type: String },
+    { name: "skip", type: Number, default: 0 },
+    { name: "limit", type: Number, default: 20000 }
   ]);
 
   if (!("fromYear" in options && "toYear" in options)) {
